@@ -2,6 +2,12 @@ const express = require('express');
 const mysql = require('mysql2');
 const app = express();
 const port = 3000;
+const { engine } = require('express-handlebars');
+
+//Configuracao handle-bars
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
 
 //Configuração de conexão
 const conexao = mysql.createConnection({
@@ -17,8 +23,9 @@ conexao.connect(function(erro){
   console.log("Conexão realizada com sucesso");
 })
 
-app.get("/home", function(req, res){
-  res.send("Hello world");
+//Rota principal
+app.get("/", function(req, res){
+  res.render('formulario');
 })
 
 app.listen(port, ()=>{
