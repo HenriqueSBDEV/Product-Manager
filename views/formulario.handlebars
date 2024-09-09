@@ -1,1 +1,15 @@
-<h1>Hello Wold</h1>
+<main>
+  {{!-- Formulário --}}
+  <div class="container">
+    <div class="row">
+      <div class="col-6 offset-3">
+        <form action="/cadastrar" method="post" enctype="multipart/form-data">
+          <input type="text" name="nome" placeholder="Nome do produto" class="form-control">
+          <input type="number" name="valor" placeholder="Valor do produto" class="form-control">
+          <input type="file" name="imagem" class="form-control">
+          <input type="submit" value="cadastrar" class="btn btn-primary" >
+        </form>
+      </div> 
+    </div>
+  </div>
+</main>

@@ -1,0 +1,10 @@
+form{
+  margin-top: 50px;
+  text-align: center;
+}
+form input{
+  margin-bottom: 20px;
+}
+.btn-primary{
+  width: 100%;
+}
