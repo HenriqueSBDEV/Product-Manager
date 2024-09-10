@@ -67,7 +67,7 @@ app.post('/cadastrar', function(req, res){
   res.redirect('/');
 })
 
-
+//Rota de remoção
 app.get('/remover/:codigo&:imagem', function(req, res){
   let codigo = req.params.codigo;
   let img = req.params.imagem;
@@ -84,6 +84,32 @@ app.get('/remover/:codigo&:imagem', function(req, res){
   })
   res.redirect('/');
   res.end();
+})
+
+//Rota de alterar
+app.get('/alterarform/:codigo', function(req,res){
+  let codigo = req.params.codigo;
+  let sql = `SELECT * FROM produtos WHERE codigo = ${codigo}`;
+  conexao.query(sql, function(erro, retorno){
+    if(erro) throw erro;
+    res.render('formularioEditar', {produto:retorno[0]});
+  })
+})
+
+app.post('/editar', function(req, res){
+  let codigo = req.body.codigo;
+  let nome = req.body.nome;
+  let valor = req.body.valor;
+  let imagem = req.body.novaImagem;
+
+  try {
+    let novaImagem = req.files.imagem.name;    
+    res.write('A imagem sera alterada');
+  } catch (error) {
+    res.write('A imagem nao sera alterada');
+  }
+  res.end();
+  //res.redirect('/');   
 })
 
 app.listen(port, ()=>{

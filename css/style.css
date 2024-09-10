@@ -44,7 +44,7 @@ form input {
 }
 
 .card-img-top {
-  height: 180px;
+  height: 300px;
   object-fit: cover;
   width: 100%;
 }
@@ -53,6 +53,7 @@ form input {
   display: flex;
   justify-content: space-between;
   padding: 10px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -69,4 +70,13 @@ form input {
   margin: 0 5px;
   margin-bottom: 10px;
   font-size: 14px;
+}
+
+.btn-secundary{
+  background-color: rgba(189, 184, 178, 0.712);
+  width: 100%;
+}
+
+.btn-secundary:hover{
+  background-color: rgb(189, 184, 178);
 }
