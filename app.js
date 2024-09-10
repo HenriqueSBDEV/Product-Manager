@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql2');
+const fs = require('fs');
 const app = express();
 const port = 3000;
 const { engine } = require('express-handlebars');
@@ -8,6 +9,9 @@ app.use('/bootstrap', express.static('./node_modules/bootstrap/dist'));
 
 //Adicionar css
 app.use('/css', express.static('./css'));
+
+// Referenciar a pasta de imagens
+app.use('/imagens', express.static('./imagens'));
 
 //Habilitando o fileUpload de arquivos
 app.use(fileUpload());
@@ -37,7 +41,10 @@ conexao.connect(function(erro){
 
 //Rota principal
 app.get("/", function(req, res){
-  res.render('formulario');
+  let sql = 'SELECT * FROM produtos';
+  conexao.query(sql, function(erro, retorno){
+    res.render('formulario', {produtos:retorno});
+  })
 })
 
 //Rota de cadastro
@@ -58,6 +65,25 @@ app.post('/cadastrar', function(req, res){
 
   //retornar para a rota principal
   res.redirect('/');
+})
+
+
+app.get('/remover/:codigo&:imagem', function(req, res){
+  let codigo = req.params.codigo;
+  let img = req.params.imagem;
+  let sql = `DELETE FROM produtos WHERE codigo = ${codigo}`;
+
+  conexao.query(sql, function(erro, retorno){
+    if(erro) throw erro;
+    let caminhoimg = (__dirname + '/imagens/' + img)
+    fs.unlink(caminhoimg, function(erro){
+      if(erro){
+        console.error('Erro ao remover da pasta');
+      }
+    });
+  })
+  res.redirect('/');
+  res.end();
 })
 
 app.listen(port, ()=>{

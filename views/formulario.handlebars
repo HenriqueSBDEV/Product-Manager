@@ -1,15 +1,32 @@
 <main>
   {{!-- Formulário --}}
-  <div class="container">
+  <div class="container container-form">
     <div class="row">
-      <div class="col-6 offset-3">
-        <form action="/cadastrar" method="post" enctype="multipart/form-data">
+      <div class="col-12 col-md-8 col-lg-6">
+        <form action="/cadastrar" method="post" enctype="multipart/form-data" class="my-form">
           <input type="text" name="nome" placeholder="Nome do produto" class="form-control">
           <input type="number" name="valor" placeholder="Valor do produto" class="form-control">
           <input type="file" name="imagem" class="form-control">
-          <input type="submit" value="cadastrar" class="btn btn-primary" >
+          <input type="submit" value="Cadastrar" class="btn btn-primary">
         </form>
       </div> 
     </div>
+  </div>
+
+  {{!-- Listagem de produtos --}}
+  <div class="container container-products">
+    {{#each produtos}}
+    <div class="card">
+      <img src="../imagens/{{imagem}}" alt="{{nome}}" class="card-img-top">
+      <div class="textos">
+        <p>{{nome}}</p>
+        <p>R${{valor}}</p>
+      </div>
+      <div class="card-body">
+        <a href="#" class="btn btn-warning">Alterar</a>
+        <a href="/remover/{{codigo}}&{{imagem}}" class="btn btn-danger">Remover</a>
+      </div>
+    </div>
+    {{/each}}
   </div>
 </main>

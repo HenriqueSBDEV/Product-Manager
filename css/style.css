@@ -1,10 +1,72 @@
-form{
-  margin-top: 50px;
-  text-align: center;
-}
-form input{
+form input {
   margin-bottom: 20px;
 }
-.btn-primary{
+
+.container-form{
+  width: 80%;
+  height: 400px; 
+  max-width: 1200px;
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.col-12{
+  margin-top: 30px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.btn-primary {
   width: 100%;
+}
+
+.container-products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+}
+
+.card {
+  flex: 1 1 calc(25% - 20px);
+  max-width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img-top {
+  height: 180px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.textos {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.card-body a {
+  width: 100%;
+  margin: 0 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
 }
